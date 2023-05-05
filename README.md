@@ -1,6 +1,13 @@
 # LDAP Server
 
 
+Un container Docker pour découvrir LDAP.
+
+# Todo
+
+- TPs d'installation et de configuration
+- TPs de connexion (PHP ou Python)
+
 # Source
 https://blog.ruanbekker.com/blog/2022/03/20/run-openldap-with-a-ui-on-docker/
 
