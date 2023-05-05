@@ -1,1 +1,25 @@
-docker-compose exec openldap bash
+#!/usr/bin/env bash
+
+# Nettoyage de l'écran
+clear
+
+# Echo with figlet if exists
+if type "figlet" > /dev/null; then
+  figlet Docker OpenLDAP
+else
+  echo "Docker Open LDAP"
+fi
+
+# Lecture du paramètre
+if [ -z "$1" ]; then
+	# Aucun paramètre 
+	
+	echo "Shell du container openldap-ui"
+	docker exec -it openldap-ui bash
+else
+	
+	echo "Shell du container openldap"
+	docker exec -it openldap bash
+fi
+
+
