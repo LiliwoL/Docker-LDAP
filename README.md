@@ -93,7 +93,19 @@ Vous arrivez sur l'interface de gestion des utilisateurs.
 
 ![](readme_docs/usermanager2.png)
 
-# Verify Users
+# Tester l'authentification dan sune application PHP
+
+Ouvrez dans votre navigateur le container PHP
+http://localhost:8080
+![](readme_docs/php.png)
+
+Si vous avez laissez les informations par défaut, saisissez les identifiants d'un compté créé plus haut.
+Vous pourrez ainsi vous connecter via LDAP.
+
+![](readme_docs/connected.png)
+
+
+# Verify Users in shell
 
 Access the openldap container:
 ```bash
