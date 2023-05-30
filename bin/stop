@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+if [ -z "$1" ]
+  then
+    # Echo with figlet if exists
+    if type "figlet" > /dev/null; then
+        figlet "Arret de tous les containers"
+    else
+        echo "Arret de tous les containers"
+    fi
+
+    docker-compose down
+else
+
+    # Echo with figlet if exists
+    if type "figlet" > /dev/null; then
+        figlet "Arret du container $@"
+    else
+        echo "Arret du container $@"
+    fi
+    docker-compose down $@
+fi

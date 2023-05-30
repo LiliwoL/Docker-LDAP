@@ -39,6 +39,18 @@ services:
     networks:
       - openldap
 
+  php-web:
+    build:
+      context: ./Docker
+      dockerfile: Dockerfile
+    container_name: php-web
+    volumes:
+      - ./app:/var/www/html
+    ports:
+      - 8080:80
+    networks:
+      - openldap
+
 networks:
   openldap:
     driver: bridge

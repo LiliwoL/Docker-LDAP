@@ -1,7 +1,21 @@
 # LDAP Server
 
-
 Un container Docker pour découvrir LDAP.
+
+# Sommaire
+
+<!-- TOC -->
+* [LDAP Server](#ldap-server)
+* [Sommaire](#sommaire)
+* [Todo](#todo)
+* [Source](#source)
+* [Outils](#outils)
+* [Lancement des containers](#lancement-des-containers)
+* [Accès à l'inbterface de gestion graphique du serveur LDAP](#accs--linbterface-de-gestion-graphique-du-serveur-ldap)
+* [Création de la base](#cration-de-la-base)
+* [Connexion et gestion des utilisateurs](#connexion-et-gestion-des-utilisateurs)
+* [Verify Users](#verify-users)
+<!-- TOC -->
 
 # Todo
 
@@ -11,25 +25,80 @@ Un container Docker pour découvrir LDAP.
 # Source
 https://blog.ruanbekker.com/blog/2022/03/20/run-openldap-with-a-ui-on-docker/
 
+# Outils
 
-# Boot
+- LDAPExplorer
+  - https://ldaptool.sourceforge.net/
+- JXplorer
+  - http://jxplorer.org/
+- Explorateur Active Directory
+  - https://learn.microsoft.com/fr-fr/sysinternals/downloads/adexplorer
+- LDAP Browser for Mac
+  - https://www.ldapbrowsermac.com/
 
-Boot the stack with docker-compose:
+# Lancement des containers
+
+Lancement des containers avec **docker-compose** ou le script fourni:
 ```bash
-docker-compose up -d
+bin/start
 ```
 
-You can access OpenLDAP-UI on port 18080 and the admin password will be admin. 
+![](readme_docs/start.png)
 
-http://HOST:18080/setup/
+# Accès à l'interface de gestion graphique du serveur LDAP
 
-You will have admin access to create users.
+L'accès à OpenLDAP-UI se fait sur le port 18080 et les identifiants:
+> User: admin
+> Password: admin
 
+Allez à l'adresse:
+http://localhost:18080/setup/
+
+![](readme_docs/openldapui.png)
+
+![](readme_docs/login.png)
+
+Saisissez le mot de passe **admin**
+
+Vous pourrez alors créer les utilisateurs et la base.
+
+# Création de la base
+
+![](readme_docs/check1.png)
+![](readme_docs/check2.png)
+
+Les vérifications sont faites sur le serveur, et les **OU** sont créées.
+
+![](readme_docs/check3.png)
+
+Vous arrivez ensuite sur l'interface pour créer des utilisateurs.
+
+![](readme_docs/createuser.png)
+
+![](readme_docs/createuser2.png)
+
+Attention, vous devez respecter une politique de mot de passe définie.
+![](readme_docs/policypassword.png)
+
+Allez jusqu'à la création réussie.
+
+![](readme_docs/success.png)
+
+# Connexion et gestion des utilisateurs
+
+Connectez-vous ensuite avec l'utilisateur que vous venez de créer.
+
+Vous arrivez sur l'interface de gestion des utilisateurs.
+![](readme_docs/usermanager.png)
+
+![](readme_docs/usermanager2.png)
 
 # Verify Users
 
 Access the openldap container:
 ```bash
+bin/shell
+ou
 docker-compose exec openldap bash
 ```
 
@@ -50,3 +119,6 @@ ldap_initialize( <DEFAULT> )
 dn:uid=ruan,ou=people,dc=example,dc=org
 Result: Success (0)
 ```
+
+
+https://medium.com/ihme-tech/simple-docker-apache-php-authentication-with-ldap-3ac16b17bf31
